@@ -44,15 +44,15 @@ Once the selections are made, the game board will be displayed. The user can con
 
 #### Landing Page
 
-![Image](README/Landing.png)
+![Image](ReadMe/Landing.png)
 
 #### Characters
 
-![Image](README/Characters.png)
+![Image](ReadMe/Characters.png)
 
 #### Difficulty Level
 
-![Image](README/difficulty.png)
+![Image](ReadMe/difficulty.png)
 
 #### Game Board
 

@@ -16,14 +16,6 @@ p {
   margin: 20px 40px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 100px 100px 100px;
-  grid-template-rows: 100px 100px 100px;
-  background-color: rgb(93, 104, 30);
-  text-align: center;
-}
-
 .characters {
   display: flex;
   flex-direction: row;
@@ -31,4 +23,26 @@ p {
 
 .characters > div {
   padding: 20px;
+}
+
+.grid {
+  display: flex;
+  display: grid;
+  grid-template-rows: repeat(13, 1fr);
+  grid-template-columns: repeat(13, 1fr);
+}
+
+.square {
+  border: 1px solid #ddd;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+}
+
+.character {
+  background-color: blue;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
 }
