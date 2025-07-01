@@ -42,22 +42,4 @@ Once the selections are made, the game board will be displayed. The user can con
 
 ### WireFrames
 
-#### Landing Page
-
-![Image](ReadMe/Landing.png)
-
-#### Characters
-
-![Image](ReadMe/Characters.png)
-
-#### Difficulty Level
-
-![Image](ReadMe/difficulty.png)
-
-#### Game Board
-
-![Image](ReadMe/GameBoard.png)
-
-#### Game Over
-
-![Image](ReadMe/GameOver.png)
+![Image](ReadMe/Wireframes.png)
