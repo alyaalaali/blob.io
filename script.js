@@ -14,6 +14,7 @@ const makeGrid = () => {
       let square = document.createElement("div")
       square.className = "square"
       grid.appendChild(square)
+      // square.innerHTML = `${x} ${y}`
     }
   }
 }
@@ -38,6 +39,54 @@ const placeSquare = () => {
     squares[index].appendChild(userSquare)
   }
 }
+
+const updateSquare = () => {
+  const squares = document.querySelectorAll(".square")
+  squares.forEach((square) => {
+    square.innerHTML = ""
+  })
+  placeBall()
+  placeSquare()
+}
+
+const keys = {
+  left: "ArrowLeft",
+  up: "ArrowUp",
+  right: "ArrowRight",
+  down: "ArrowDown",
+}
+
+const keyPress = (e) => {
+  switch (e.key) {
+    case keys.up:
+      if (squarePosition.x < 0) {
+        squarePosition.x = 12
+      }
+      squarePosition.x--
+      break
+    case keys.down:
+      if (squarePosition.x > 12) {
+        squarePosition.x = 0
+      }
+      squarePosition.x++
+      break
+    case keys.left:
+      if (squarePosition.y < 0) {
+        squarePosition.y = 12
+      }
+      squarePosition.y--
+      break
+    case keys.right:
+      if (squarePosition.y > 12) {
+        squarePosition.y = 0
+      }
+      squarePosition.y++
+      break
+  }
+  updateSquare()
+}
+
+window.addEventListener("keydown", keyPress)
 
 makeGrid()
 placeBall()
