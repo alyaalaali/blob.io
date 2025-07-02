@@ -5,6 +5,8 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  background-color: black;
+  color: white;
 }
 
 .panel {
@@ -42,8 +44,8 @@ p {
 
 .ball {
   background-color: blue;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
 }
 
