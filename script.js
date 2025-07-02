@@ -2,14 +2,23 @@ const grid = document.querySelector(".grid")
 let circle = document.createElement("div")
 let userSquare = document.createElement("div")
 let scoreDisplay = document.querySelector(".score")
+let startGame = document.querySelector(".startGame")
+
 //
 position = { x: 0, y: 0 }
-squarePosition = { x: 12, y: 6 }
+squarePosition = { x: 8, y: 4 }
 ballPosition = { x: 0, y: 0 }
-let gridWidth = 13
-let gridHeight = 13
+let gridWidth = 9
+let gridHeight = 9
 let score = 0
+let GamOn = false
 //
+
+const StartGame = () => {
+  startGame.addEventListener("click", makeGrid)
+  gameOn = true
+}
+
 const makeGrid = () => {
   for (let x = 0; x < gridHeight; x++) {
     for (let y = 0; y < gridWidth; y++) {
@@ -58,12 +67,6 @@ const placeSquare = () => {
 }
 
 const updateSquare = () => {
-  // const squares = document.querySelectorAll(".square")
-  // squares.forEach((square) => {
-  //   square.innerHTML = ""
-  // })
-  // placeBall()
-
   placeSquare()
   checkOverlap()
 }
@@ -78,28 +81,28 @@ const keys = {
 const keyPress = (e) => {
   switch (e.key) {
     case keys.up:
-      if (squarePosition.x < 0) {
-        squarePosition.x = 12
+      if (squarePosition.x > 0) {
+        squarePosition.x--
       }
-      squarePosition.x--
+
       break
     case keys.down:
-      if (squarePosition.x > 12) {
-        squarePosition.x = 0
+      if (squarePosition.x < 8) {
+        squarePosition.x++
       }
-      squarePosition.x++
+
       break
     case keys.left:
-      if (squarePosition.y < 0) {
-        squarePosition.y = 12
+      if (squarePosition.y > 0) {
+        squarePosition.y--
       }
-      squarePosition.y--
+
       break
     case keys.right:
-      if (squarePosition.y > 12) {
-        squarePosition.y = 0
+      if (squarePosition.y < 8) {
+        squarePosition.y++
       }
-      squarePosition.y++
+
       break
   }
   updateSquare()
@@ -111,15 +114,20 @@ const checkOverlap = () => {
     squarePosition.y === ballPosition.y
   ) {
     score++
-    scoreDisplay.innerHTML = `Score: ${score}`
+    printScore()
     placeBall()
   }
+}
+
+const printScore = () => {
+  scoreDisplay.innerHTML = `Score: ${score}`
 }
 
 window.addEventListener("keydown", keyPress)
 
 makeGrid()
 placeBall()
-const teleportBall = setInterval(placeBall, 1500)
+const teleportBall = setInterval(placeBall, 2500)
 //https://www.w3schools.com/jsref/met_win_setinterval.asp used setinterval from this site
 placeSquare()
+startGame()
