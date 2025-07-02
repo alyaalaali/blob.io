@@ -40,9 +40,11 @@ p {
   width: 30px;
   height: 30px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .ball {
+  position: relative;
   background-color: blue;
   width: 28px;
   height: 28px;
@@ -50,6 +52,7 @@ p {
 }
 
 .userSquare {
+  position: relative;
   background-color: red;
   width: 30px;
   height: 30px;

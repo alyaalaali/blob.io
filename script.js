@@ -1,12 +1,14 @@
 const grid = document.querySelector(".grid")
 let circle = document.createElement("div")
 let userSquare = document.createElement("div")
+let scoreDisplay = document.querySelector(".score")
 //
 position = { x: 0, y: 0 }
 squarePosition = { x: 12, y: 6 }
 ballPosition = { x: 0, y: 0 }
 let gridWidth = 13
 let gridHeight = 13
+let score = 0
 //
 const makeGrid = () => {
   for (let x = 0; x < gridHeight; x++) {
@@ -61,7 +63,9 @@ const updateSquare = () => {
   //   square.innerHTML = ""
   // })
   // placeBall()
+
   placeSquare()
+  checkOverlap()
 }
 
 const keys = {
@@ -101,10 +105,21 @@ const keyPress = (e) => {
   updateSquare()
 } // took a very small code snippet from https://stackoverflow.com/questions/58162481/move-element-in-a-grid-layout-with-arrow-keys
 
+const checkOverlap = () => {
+  if (
+    squarePosition.x === ballPosition.x &&
+    squarePosition.y === ballPosition.y
+  ) {
+    score++
+    scoreDisplay.innerHTML = `Score: ${score}`
+    placeBall()
+  }
+}
+
 window.addEventListener("keydown", keyPress)
 
 makeGrid()
 placeBall()
-const teleportBall = setInterval(placeBall, 2000)
+const teleportBall = setInterval(placeBall, 1500)
 //https://www.w3schools.com/jsref/met_win_setinterval.asp used setinterval from this site
 placeSquare()
