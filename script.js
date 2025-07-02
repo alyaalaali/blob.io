@@ -3,6 +3,7 @@ let circle = document.createElement("div")
 let userSquare = document.createElement("div")
 let scoreDisplay = document.querySelector(".score")
 let startGame = document.querySelector(".startGame")
+let timerDisplay = document.querySelector(".timer")
 
 //
 position = { x: 0, y: 0 }
@@ -11,13 +12,9 @@ ballPosition = { x: 0, y: 0 }
 let gridWidth = 9
 let gridHeight = 9
 let score = 0
-let GamOn = false
+let gameOn = false
+let timer = 30
 //
-
-const StartGame = () => {
-  startGame.addEventListener("click", makeGrid)
-  gameOn = true
-}
 
 const makeGrid = () => {
   for (let x = 0; x < gridHeight; x++) {
@@ -50,6 +47,8 @@ const stopBall = () => {
   clearInterval(teleportBall)
 }
 
+const teleportBall = setInterval(placeBall, 5000)
+
 const placeSquare = () => {
   const currentSquare = document.querySelector(".userSquare")
   if (currentSquare) {
@@ -79,6 +78,9 @@ const keys = {
 }
 
 const keyPress = (e) => {
+  if (!gameOn) {
+    return
+  }
   switch (e.key) {
     case keys.up:
       if (squarePosition.x > 0) {
@@ -106,7 +108,7 @@ const keyPress = (e) => {
       break
   }
   updateSquare()
-} // took a very small code snippet from https://stackoverflow.com/questions/58162481/move-element-in-a-grid-layout-with-arrow-keys
+}
 
 const checkOverlap = () => {
   if (
@@ -123,11 +125,42 @@ const printScore = () => {
   scoreDisplay.innerHTML = `Score: ${score}`
 }
 
-window.addEventListener("keydown", keyPress)
+const startTimer = () => {
+  timerDisplay.innerHTML = `${timer}`
 
-makeGrid()
-placeBall()
-const teleportBall = setInterval(placeBall, 2500)
-//https://www.w3schools.com/jsref/met_win_setinterval.asp used setinterval from this site
-placeSquare()
-startGame()
+  let countTimer = setInterval(() => {
+    timer--
+    timerDisplay.innerHTML = `${timer}`
+
+    if (timer <= 0) {
+      clearInterval(countTimer)
+      endGame()
+    }
+  }, 1000)
+}
+
+const initiateGame = () => {
+  // console.log("gameRuns!");
+  startGame.addEventListener("click", () => {
+    makeGrid()
+    placeBall()
+    placeSquare()
+    startTimer()
+    gameOn = true
+  })
+}
+const endGame = () => {
+  clearInterval(teleportBall)
+  clearInterval(countTimer)
+  alert("game Over! final score is: " + score)
+  gameOn = false
+}
+
+window.addEventListener("keydown", keyPress)
+initiateGame()
+
+//sites used
+//intervals:
+//https://www.w3schools.com/jsref/met_win_setinterval.asp
+//key movements:
+//https://stackoverflow.com/questions/58162481/move-element-in-a-grid-layout-with-arrow-keys
