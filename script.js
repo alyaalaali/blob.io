@@ -20,6 +20,11 @@ const makeGrid = () => {
 }
 
 const placeBall = () => {
+  const currentBall = document.querySelector(".ball")
+  if (currentBall) {
+    currentBall.remove()
+  }
+
   ballPosition.x = Math.floor(Math.random() * gridHeight)
   ballPosition.y = Math.floor(Math.random() * gridWidth)
   let squares = document.querySelectorAll(".square")
@@ -35,6 +40,11 @@ const stopBall = () => {
 }
 
 const placeSquare = () => {
+  const currentSquare = document.querySelector(".userSquare")
+  if (currentSquare) {
+    currentSquare.remove()
+  }
+
   position.x = squarePosition.x
   position.y = squarePosition.y
   let squares = document.querySelectorAll(".square")
@@ -46,10 +56,10 @@ const placeSquare = () => {
 }
 
 const updateSquare = () => {
-  const squares = document.querySelectorAll(".square")
-  squares.forEach((square) => {
-    square.innerHTML = ""
-  })
+  // const squares = document.querySelectorAll(".square")
+  // squares.forEach((square) => {
+  //   square.innerHTML = ""
+  // })
   // placeBall()
   placeSquare()
 }
