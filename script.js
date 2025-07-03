@@ -13,8 +13,9 @@ let gridWidth = 9
 let gridHeight = 9
 let score = 0
 let gameOn = false
-let timer = 15
+let timer = 10
 let countTimer
+let teleportBall = null
 //
 
 const makeGrid = () => {
@@ -29,6 +30,9 @@ const makeGrid = () => {
 }
 
 const placeBall = () => {
+  if (!gameOn) {
+    return
+  }
   const currentBall = document.querySelector(".ball")
   if (currentBall) {
     currentBall.remove()
@@ -47,8 +51,6 @@ const placeBall = () => {
 const stopBall = () => {
   clearInterval(teleportBall)
 }
-
-const teleportBall = setInterval(placeBall, 2500)
 
 const placeSquare = () => {
   const currentSquare = document.querySelector(".userSquare")
@@ -146,29 +148,37 @@ const startTimer = () => {
 const initiateGame = () => {
   // console.log("gameRuns!");
   // window.addEventListener("keydown", (e) => {
-  gameOn = true
-  score = 0
-  printScore()
+
   startTimer()
-  window.addEventListener("keydown", keyPress)
+  gameOn = true
+  placeBall()
+  teleportBall = setInterval(placeBall, 2500)
   // })
 }
 
 const endGame = () => {
-  clearInterval(teleportBall)
+  stopBall()
   clearInterval(countTimer)
-  alert("game Over! final score is: " + score)
+  // alert("game Over! final score is: " + score)
   gameOn = false
+  window.removeEventListener("keydown", keyPress)
+  localStorage.setItem("finalScore", score)
+  window.location.href = "./gameOver.html"
 }
+
 document.addEventListener("keydown", (e) => {
   if (keys.space === " " && !gameOn) {
-    // console.log('Space pressed')
+    console.log("Space pressed")
     initiateGame()
   }
 })
-makeGrid()
-placeBall()
-placeSquare()
+const createBoard = () => {
+  makeGrid()
+  placeSquare()
+}
+
+createBoard()
+window.addEventListener("keydown", keyPress)
 
 //sites used
 //intervals:
