@@ -14,10 +14,11 @@ let gridWidth = 9
 let gridHeight = 9
 let score = 0
 let gameOn = false
-let timer = 5
+let timer = 15
 let countTimer
 let teleportBall = null
-let hiScore = 0
+let hiScore = parseInt(highScore)
+//
 
 const makeGrid = () => {
   for (let x = 0; x < gridHeight; x++) {
@@ -161,14 +162,15 @@ const endGame = () => {
   window.removeEventListener("keydown", keyPress)
   checkHighScore()
   localStorage.setItem("finalScore", score)
-  localStorage.setItem("highScore", score)
-  // window.location.href = "./gameOver.html"
+  localStorage.setItem("highScore", hiScore)
+  window.location.href = "./gameOver.html"
 }
 
 const checkHighScore = () => {
   if (score > hiScore) {
     hiScore = score
-    highScoreDisp.innerHTML = `High Score: ${highScore}`
+    highScoreDisp.innerHTML = `High Score: ${hiScore}`
+    localStorage.setItem("highScore", hiScore)
   }
 }
 
@@ -180,6 +182,7 @@ document.addEventListener("keydown", (e) => {
 const createBoard = () => {
   makeGrid()
   placeSquare()
+  highScoreDisp.innerHTML = `High Score: ${hiScore}`
 }
 
 createBoard()
