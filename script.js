@@ -2,8 +2,9 @@ const grid = document.querySelector(".grid")
 let circle = document.createElement("div")
 let userSquare = document.createElement("div")
 let scoreDisplay = document.querySelector(".score")
-// let startGame = document.querySelector(".startGame")
 let timerDisplay = document.querySelector(".timer")
+let highScoreDisp = document.querySelector(".highScore")
+let highScore = localStorage.getItem("highScore")
 
 //
 position = { x: 0, y: 0 }
@@ -13,10 +14,10 @@ let gridWidth = 9
 let gridHeight = 9
 let score = 0
 let gameOn = false
-let timer = 10
+let timer = 5
 let countTimer
 let teleportBall = null
-//
+let hiScore = 0
 
 const makeGrid = () => {
   for (let x = 0; x < gridHeight; x++) {
@@ -146,14 +147,10 @@ const startTimer = () => {
 }
 
 const initiateGame = () => {
-  // console.log("gameRuns!");
-  // window.addEventListener("keydown", (e) => {
-
   startTimer()
   gameOn = true
   placeBall()
-  teleportBall = setInterval(placeBall, 2500)
-  // })
+  teleportBall = setInterval(placeBall, 1500)
 }
 
 const endGame = () => {
@@ -162,13 +159,21 @@ const endGame = () => {
   // alert("game Over! final score is: " + score)
   gameOn = false
   window.removeEventListener("keydown", keyPress)
+  checkHighScore()
   localStorage.setItem("finalScore", score)
-  window.location.href = "./gameOver.html"
+  localStorage.setItem("highScore", score)
+  // window.location.href = "./gameOver.html"
+}
+
+const checkHighScore = () => {
+  if (score > hiScore) {
+    hiScore = score
+    highScoreDisp.innerHTML = `High Score: ${highScore}`
+  }
 }
 
 document.addEventListener("keydown", (e) => {
   if (keys.space === " " && !gameOn) {
-    console.log("Space pressed")
     initiateGame()
   }
 })
