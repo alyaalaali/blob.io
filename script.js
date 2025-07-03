@@ -2,7 +2,7 @@ const grid = document.querySelector(".grid")
 let circle = document.createElement("div")
 let userSquare = document.createElement("div")
 let scoreDisplay = document.querySelector(".score")
-let startGame = document.querySelector(".startGame")
+// let startGame = document.querySelector(".startGame")
 let timerDisplay = document.querySelector(".timer")
 
 //
@@ -13,7 +13,8 @@ let gridWidth = 9
 let gridHeight = 9
 let score = 0
 let gameOn = false
-let timer = 30
+let timer = 15
+let countTimer
 //
 
 const makeGrid = () => {
@@ -47,7 +48,7 @@ const stopBall = () => {
   clearInterval(teleportBall)
 }
 
-const teleportBall = setInterval(placeBall, 5000)
+const teleportBall = setInterval(placeBall, 2500)
 
 const placeSquare = () => {
   const currentSquare = document.querySelector(".userSquare")
@@ -75,6 +76,7 @@ const keys = {
   up: "ArrowUp",
   right: "ArrowRight",
   down: "ArrowDown",
+  space: " ",
 }
 
 const keyPress = (e) => {
@@ -128,8 +130,10 @@ const printScore = () => {
 const startTimer = () => {
   timerDisplay.innerHTML = `${timer}`
 
-  let countTimer = setInterval(() => {
-    timer--
+  countTimer = setInterval(() => {
+    if (timer > 0) {
+      timer--
+    }
     timerDisplay.innerHTML = `${timer}`
 
     if (timer <= 0) {
@@ -141,23 +145,30 @@ const startTimer = () => {
 
 const initiateGame = () => {
   // console.log("gameRuns!");
-  startGame.addEventListener("click", () => {
-    makeGrid()
-    placeBall()
-    placeSquare()
-    startTimer()
-    gameOn = true
-  })
+  // window.addEventListener("keydown", (e) => {
+  gameOn = true
+  score = 0
+  printScore()
+  startTimer()
+  window.addEventListener("keydown", keyPress)
+  // })
 }
+
 const endGame = () => {
   clearInterval(teleportBall)
   clearInterval(countTimer)
   alert("game Over! final score is: " + score)
   gameOn = false
 }
-
-window.addEventListener("keydown", keyPress)
-initiateGame()
+document.addEventListener("keydown", (e) => {
+  if (keys.space === " " && !gameOn) {
+    // console.log('Space pressed')
+    initiateGame()
+  }
+})
+makeGrid()
+placeBall()
+placeSquare()
 
 //sites used
 //intervals:
