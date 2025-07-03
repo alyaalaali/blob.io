@@ -34,9 +34,7 @@
 
 ### Pseudo-code
 
-Upon opening the game, the user will be prompted to enter their preferred username and start a new game. After that, a character selection screen will appear, allowing the user to choose their preferred character. Next, the user will select a difficulty level: "Easy" means the ball teleports slower, while the speed increases with higher difficulty levels.
-
-Once the selections are made, the game board will be displayed. The user can control their character using the arrow keys to catch as many balls as possible. A counter will keep track of the number of balls caught and compare it to the high score. When the time is up, the game will end, and the final score will be shown on the screen, along with the option to start a new game.
+#### I will start by grabbing necessary HTML elements and setting up initial game variables like grid dimensions, player/ball positions, score, and game state. The makeGrid function will then generate the game board by creating square div elements and appending them to the grid container. The placeBall and placeSquare functions will handle positioning the ball and the user-controlled square on the grid. User input will be managed through the keyPress function, which updates the square's position based on arrow key presses. The checkOverlap function will determine if the square and ball collide, updating the score and repositioning the ball if they do. The startTimer function will initiate a countdown timer, ending the game when it reaches zero. The initiateGame function will start the timer, place the ball, and set up the ball to randomly teleport. The endGame function will stop the ball and timer, check for a new high score, store the final score, and redirect to the game over page. Finally, the createBoard function will call the functions to make the grid, place the square and print the highscore. 2 event listeners will be set up to start the game on spacebar press and to handle user input
 
 ---
 

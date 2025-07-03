@@ -1,4 +1,4 @@
-let finalScoreDisp = document.getElementById("finalScore")
+let finalScoreDisp = document.querySelector("#finalScore")
 let highScoreDisp = document.querySelector(".highScore")
 
 const checkScore = () => {
@@ -9,7 +9,7 @@ const checkScore = () => {
     finalScoreDisp.innerHTML = `score: ${finalScore}`
   }
   if (highScore) {
-    highScoreDisp.innerHTML = `High Score: ${highScore}`
+    highScoreDisp.innerHTML = `HighScore: ${highScore}`
   }
 }
 

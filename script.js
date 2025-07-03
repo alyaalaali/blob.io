@@ -5,7 +5,7 @@ let scoreDisplay = document.querySelector(".score")
 let timerDisplay = document.querySelector(".timer")
 let highScoreDisp = document.querySelector(".highScore")
 let highScore = localStorage.getItem("highScore")
-
+let space = document.querySelector(".comment")
 //
 position = { x: 0, y: 0 }
 squarePosition = { x: 8, y: 4 }
@@ -152,6 +152,7 @@ const initiateGame = () => {
   gameOn = true
   placeBall()
   teleportBall = setInterval(placeBall, 1500)
+  space.innerHTML = ""
 }
 
 const endGame = () => {
@@ -169,9 +170,13 @@ const endGame = () => {
 const checkHighScore = () => {
   if (score > hiScore) {
     hiScore = score
-    highScoreDisp.innerHTML = `High Score: ${hiScore}`
+    printHighScore()
     localStorage.setItem("highScore", hiScore)
   }
+}
+
+const printHighScore = () => {
+  highScoreDisp.innerHTML = `High Score: ${hiScore}`
 }
 
 document.addEventListener("keydown", (e) => {
@@ -182,7 +187,7 @@ document.addEventListener("keydown", (e) => {
 const createBoard = () => {
   makeGrid()
   placeSquare()
-  highScoreDisp.innerHTML = `High Score: ${hiScore}`
+  printHighScore()
 }
 
 createBoard()
