@@ -5,19 +5,28 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: rgb(255, 232, 232);
-  color: rgb(0, 0, 0);
+  padding: 0;
+  background-image: url("Images/Background.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 /* game board page */
 
+.GameBoard {
+  justify-content: flex-start;
+}
+
 .panel {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+  width: 600px;
 }
 
 p {
-  margin: 20px 40px;
+  margin: 50px;
 }
 
 .grid {
@@ -27,27 +36,39 @@ p {
   grid-template-columns: repeat(9, 1fr);
 }
 
+img {
+  position: absolute;
+  width: 125%;
+  height: 125%;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .square {
-  border: 1px solid #000000;
+  border: solid black;
   text-align: center;
-  width: 50px;
-  height: 50px;
-  box-sizing: border-box;
+  width: 55px;
+  height: 55px;
   position: relative;
 }
 
 .ball {
   position: relative;
   background-color: blue;
-  width: 48px;
-  height: 48px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 
 .userSquare {
   position: relative;
-  width: 50px;
-  height: 80px;
+  width: 110%;
+  height: 110%;
 }
 
 /* characters page  */
@@ -64,12 +85,7 @@ p {
 
 .sillyGuy,
 .shark {
-  display: inline;
   width: 100px;
   height: 100px;
-  background-color: red;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  background-color: li;
 }
