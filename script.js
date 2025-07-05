@@ -1,11 +1,13 @@
 const grid = document.querySelector(".grid")
 let circle = document.createElement("div")
-let userSquare = document.createElement("div")
+let userSquare = document.createElement("img")
 let scoreDisplay = document.querySelector(".score")
 let timerDisplay = document.querySelector(".timer")
 let highScoreDisp = document.querySelector(".highScore")
 let highScore = localStorage.getItem("highScore")
 let space = document.querySelector(".comment")
+const selectedCharacter = localStorage.getItem("selectedCharacter")
+
 //
 position = { x: 0, y: 0 }
 squarePosition = { x: 8, y: 4 }
@@ -66,6 +68,7 @@ const placeSquare = () => {
   const index = position.x * gridWidth + position.y
   if (index >= 0 && index < squares.length) {
     userSquare.classList.add("userSquare")
+    // userSquare.src = characterGifs[selectedCharacter].front
     squares[index].appendChild(userSquare)
   }
 }
@@ -73,6 +76,21 @@ const placeSquare = () => {
 const updateSquare = () => {
   placeSquare()
   checkOverlap()
+}
+
+const characterGifs = {
+  guyGifs: {
+    right: "../characters/SillyGuy/LeftGuy.gif",
+    left: "../characters/SillyGuy/RightGuy.gif",
+    front: "../characters/SillyGuy/FrontGuy.gif",
+    back: "../characters/SillyGuy/BackGuy.gif",
+  },
+  sharkGifs: {
+    right: "../characters/Shark/LeftShark.gif",
+    left: "../characters/Shark/RightShark.gif",
+    front: "../characters/Shark/FrontShark.gif",
+    back: "../characters/Shark/BackShark.gif",
+  },
 }
 
 const keys = {
@@ -87,30 +105,35 @@ const keyPress = (e) => {
   if (!gameOn) {
     return
   }
+
+  const character = document.querySelector(".userSquare")
+  const gifs = characterGifs[selectedCharacter]
+
   switch (e.key) {
     case keys.up:
       if (squarePosition.x > 0) {
         squarePosition.x--
       }
+      character.src = gifs.back
 
       break
     case keys.down:
       if (squarePosition.x < 8) {
         squarePosition.x++
       }
-
+      character.src = gifs.front
       break
     case keys.left:
       if (squarePosition.y > 0) {
         squarePosition.y--
       }
-
+      character.src = gifs.left
       break
     case keys.right:
       if (squarePosition.y < 8) {
         squarePosition.y++
       }
-
+      character.src = gifs.right
       break
   }
   updateSquare()
@@ -188,6 +211,7 @@ const createBoard = () => {
   makeGrid()
   placeSquare()
   printHighScore()
+  userSquare.src = characterGifs[selectedCharacter].back
 }
 
 createBoard()
