@@ -9,6 +9,8 @@ body {
   color: white;
 }
 
+/* game board page */
+
 .panel {
   display: flex;
   flex-direction: row;
@@ -16,15 +18,6 @@ body {
 
 p {
   margin: 20px 40px;
-}
-
-.characters {
-  display: flex;
-  flex-direction: row;
-}
-
-.characters > div {
-  padding: 20px;
 }
 
 .grid {
@@ -56,4 +49,26 @@ p {
   background-color: red;
   width: 50px;
   height: 50px;
+}
+
+/* characters page  */
+
+.characters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  width: 50%;
+  max-width: 600px;
+}
+
+.characters > div {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
