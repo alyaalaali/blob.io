@@ -4,10 +4,9 @@ let userSquare = document.createElement("img")
 let scoreDisplay = document.querySelector(".score")
 let timerDisplay = document.querySelector(".timer")
 let highScoreDisp = document.querySelector(".highScore")
+//
 let highScore = localStorage.getItem("highScore")
-let space = document.querySelector(".comment")
-const selectedCharacter = localStorage.getItem("selectedCharacter")
-
+let selectedCharacter = localStorage.getItem("selectedCharacter")
 //
 position = { x: 0, y: 0 }
 squarePosition = { x: 8, y: 4 }
@@ -16,7 +15,7 @@ let gridWidth = 9
 let gridHeight = 9
 let score = 0
 let gameOn = false
-let timer = 15
+let timer = 1000
 let countTimer
 let teleportBall = null
 let hiScore = parseInt(highScore)
@@ -48,6 +47,13 @@ const placeBall = () => {
   const index = ballPosition.x * gridWidth + ballPosition.y
   if (index >= 0 && index < squares.length) {
     circle.classList.add("ball")
+
+    let num = Math.floor(Math.random() * 3) + 1
+    if (num === 2) {
+      circle.style.backgroundColor = "red"
+    } else {
+      circle.style.backgroundColor = "blue"
+    }
     squares[index].appendChild(circle)
   }
 }
@@ -144,6 +150,11 @@ const checkOverlap = () => {
     squarePosition.x === ballPosition.x &&
     squarePosition.y === ballPosition.y
   ) {
+    if (document.querySelector(".ball").style.backgroundColor === "red") {
+      alert("we have a winner!")
+      endGame()
+      return
+    }
     score++
     printScore()
     placeBall()
@@ -175,7 +186,6 @@ const initiateGame = () => {
   gameOn = true
   placeBall()
   teleportBall = setInterval(placeBall, 1500)
-  space.innerHTML = ""
 }
 
 const endGame = () => {
@@ -211,7 +221,7 @@ const createBoard = () => {
   makeGrid()
   placeSquare()
   printHighScore()
-  userSquare.src = characterGifs[selectedCharacter].back
+  userSquare.src = characterGifs[selectedCharacter].front
 }
 
 createBoard()

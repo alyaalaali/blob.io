@@ -38,8 +38,8 @@ p {
 
 img {
   position: absolute;
-  width: 125%;
-  height: 125%;
+  width: 135%;
+  height: 135%;
 }
 
 .container {
@@ -50,7 +50,7 @@ img {
 }
 
 .square {
-  border: solid black;
+  border: solid transparent;
   text-align: center;
   width: 55px;
   height: 55px;
@@ -58,11 +58,16 @@ img {
 }
 
 .ball {
+  display: flex;
   position: relative;
   background-color: blue;
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .userSquare {
@@ -87,5 +92,5 @@ img {
 .shark {
   width: 100px;
   height: 100px;
-  background-color: li;
+  background-color: lightpink;
 }
