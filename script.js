@@ -1,5 +1,5 @@
 const grid = document.querySelector(".grid")
-let circle = document.createElement("div")
+let circle = document.createElement("img")
 let userSquare = document.createElement("img")
 let scoreDisplay = document.querySelector(".score")
 let timerDisplay = document.querySelector(".timer")
@@ -32,6 +32,11 @@ const makeGrid = () => {
   }
 }
 
+const seashells = {
+  blue: "../Images/blueseashell.png",
+  regular: "../Images/seashell.png",
+}
+
 const placeBall = () => {
   if (!gameOn) {
     return
@@ -50,9 +55,9 @@ const placeBall = () => {
 
     let num = Math.floor(Math.random() * 3) + 1
     if (num === 2) {
-      circle.style.backgroundColor = "red"
+      circle.src = seashells.blue
     } else {
-      circle.style.backgroundColor = "blue"
+      circle.src = seashells.regular
     }
     squares[index].appendChild(circle)
   }
@@ -150,7 +155,8 @@ const checkOverlap = () => {
     squarePosition.x === ballPosition.x &&
     squarePosition.y === ballPosition.y
   ) {
-    if (document.querySelector(".ball").style.backgroundColor === "red") {
+    let seashellImg = document.querySelector(".ball")
+    if (seashellImg.src.includes("blueseashell.png")) {
       alert("we have a winner!")
       endGame()
       return
