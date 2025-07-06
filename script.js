@@ -4,6 +4,8 @@ let userSquare = document.createElement("img")
 let scoreDisplay = document.querySelector(".score")
 let timerDisplay = document.querySelector(".timer")
 let highScoreDisp = document.querySelector(".highScore")
+let gameOverMsg = document.querySelector(".gameOverMsg")
+let message = "hooray u won!"
 //
 let highScore = localStorage.getItem("highScore")
 let selectedCharacter = localStorage.getItem("selectedCharacter")
@@ -15,10 +17,11 @@ let gridWidth = 9
 let gridHeight = 9
 let score = 0
 let gameOn = false
-let timer = 1000
+let timer = 30
 let countTimer
 let teleportBall = null
 let hiScore = parseInt(highScore)
+let won = false
 //
 
 const makeGrid = () => {
@@ -54,7 +57,7 @@ const placeBall = () => {
     circle.classList.add("ball")
 
     let num = Math.floor(Math.random() * 3) + 1
-    if (num === 2) {
+    if (num === 25 || num === 3) {
       circle.src = seashells.blue
     } else {
       circle.src = seashells.regular
@@ -157,7 +160,9 @@ const checkOverlap = () => {
   ) {
     let seashellImg = document.querySelector(".ball")
     if (seashellImg.src.includes("blueseashell.png")) {
-      alert("we have a winner!")
+      score++
+      won = true
+      // alert("we have a winner!")
       endGame()
       return
     }
@@ -203,7 +208,9 @@ const endGame = () => {
   checkHighScore()
   localStorage.setItem("finalScore", score)
   localStorage.setItem("highScore", hiScore)
+  sessionStorage.setItem("wonGame", won)
   window.location.href = "./gameOver.html"
+  checkScore()
 }
 
 const checkHighScore = () => {

@@ -50,7 +50,7 @@ img {
 }
 
 .square {
-  border: solid black;
+  border: solid transparent;
   text-align: center;
   width: 55px;
   height: 55px;
