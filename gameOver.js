@@ -13,8 +13,10 @@ const checkScore = () => {
   if (highScore) {
     highScoreDisp.innerHTML = `HighScore: ${highScore}`
   }
-  if (wonGame) {
+  if (wonGame === "true") {
     gameOverDisp.innerHTML = `You won!!`
+  } else if (wonGame === "false") {
+    gameOverDisp.innerHTML = `Game Over! Well Played`
   }
 }
 
