@@ -1,4 +1,5 @@
-//query selections
+// query selections
+
 const grid = document.querySelector(".grid")
 let circle = document.createElement("img")
 let userSquare = document.createElement("img")
@@ -6,11 +7,14 @@ let scoreDisplay = document.querySelector(".score")
 let timerDisplay = document.querySelector(".timer")
 let highScoreDisp = document.querySelector(".highScore")
 let gameOverMsg = document.querySelector(".gameOverMsg")
-//Local/session Storage
+
+// Local/session Storage
+
 let highScore = localStorage.getItem("highScore")
 let selectedCharacter = sessionStorage.getItem("selectedCharacter")
 
 //Variables/Object initialization
+
 let gridWidth = 9
 let gridHeight = 9
 let score = 0
@@ -20,11 +24,11 @@ let countTimer
 let teleportBall = null
 let hiScore = parseInt(highScore)
 let won = false
-//
+
 position = { x: 0, y: 0 }
 squarePosition = { x: 8, y: 4 }
 ballPosition = { x: 0, y: 0 }
-//
+
 const characterGifs = {
   guyGifs: {
     right: "../characters/SillyGuy/LeftGuy.gif",
@@ -39,7 +43,7 @@ const characterGifs = {
     back: "../characters/Shark/BackShark.gif",
   },
 }
-//
+
 const keys = {
   left: "ArrowLeft",
   up: "ArrowUp",
@@ -47,7 +51,7 @@ const keys = {
   down: "ArrowDown",
   space: " ",
 }
-//
+
 const seashells = {
   blue: "../Images/blueseashell.png",
   regular: "../Images/seashell.png",
@@ -63,7 +67,7 @@ const makeGrid = () => {
       grid.appendChild(square)
     }
   }
-}
+} // creates the grid by looping through x amount of width and height to create the squares
 
 const placeBall = () => {
   if (!gameOn) {
@@ -72,7 +76,7 @@ const placeBall = () => {
   const currentBall = document.querySelector(".ball")
   if (currentBall) {
     currentBall.remove()
-  }
+  } // this function places the "seashell" on the grid,first, it checks if there is an existing seashell on the grid first, then it removes it. Matj,random was used to generate random coordinates and uses an index number to determine which square to assign the seashell. function stops placing balls and exists if the game is not on
 
   ballPosition.x = Math.floor(Math.random() * gridHeight)
   ballPosition.y = Math.floor(Math.random() * gridWidth)
@@ -89,11 +93,11 @@ const placeBall = () => {
     }
     squares[index].appendChild(circle)
   }
-}
+} //also made this function randomly generate a number between 1 and  100 and if 3 or 25 shows up (fav numbers), a rare seashell will be placed, otherwise, a regular one is placed.
 
 const stopBall = () => {
   clearInterval(teleportBall)
-}
+} // clears the interval that teleports the seashell
 
 const placeSquare = () => {
   const currentSquare = document.querySelector(".userSquare")
@@ -109,12 +113,12 @@ const placeSquare = () => {
     userSquare.classList.add("userSquare")
     squares[index].appendChild(userSquare)
   }
-}
+} // this is used to place the character on the grid, function operates similar to placeBall(),  and removes any existing character before placing a new one (in this case before it moves to the next square)
 
 const updateSquare = () => {
   placeSquare()
   checkOverlap()
-}
+} // this function updates the character movement by calling placeSquare() to remove the existing character and place it in the new coordinates and calls checkOverlap() to check if it caught any seashells
 
 const keyPress = (e) => {
   if (!gameOn) {
@@ -152,7 +156,7 @@ const keyPress = (e) => {
       break
   }
   updateSquare()
-}
+} // function that handles keyboard input, particularly arrows, it updates the characters x or y coordinates, also used this function to change the characters image to reflect its movement, and it calls updateSquare() to update the display
 
 const checkOverlap = () => {
   if (
@@ -170,7 +174,7 @@ const checkOverlap = () => {
     printScore()
     placeBall()
   }
-}
+} // this function checks if the character's position overlaps with the seashell position and increases its score, if the caught seashell is blue, it ends the game , otherwise it just keeps incrementing, updating the score and teleporting the seashell
 
 const printScore = () => {
   scoreDisplay.innerHTML = `Score: ${score}`
@@ -190,14 +194,14 @@ const startTimer = () => {
       endGame()
     }
   }, 1000)
-}
+} // starts a timer that decrements down the value from 30 each second
 
 const initiateGame = () => {
   startTimer()
   gameOn = true
   placeBall()
   teleportBall = setInterval(placeBall, 1500)
-}
+} // this function initiates the game by starting the timer, and teleports the seashell
 
 const endGame = () => {
   stopBall()
@@ -212,7 +216,7 @@ const endGame = () => {
   window.location.href = "./gameOver.html"
   checkScore()
   won = false
-}
+} // stops the game and stores the game values in local/session storage to be transferred to the gameover page
 
 const checkHighScore = () => {
   if (score > hiScore) {
@@ -220,23 +224,25 @@ const checkHighScore = () => {
     printHighScore()
     sessionStorage.setItem("highScore", hiScore)
   }
-}
+} // checks if the current score is higher than the highscore and updates its value in the session storage
+// highscore shows as NaN all of a sudden, it worked at first, i didnt make any changes to the code, but it works fine if u open it in microsoft edge
 
 const printHighScore = () => {
   highScoreDisp.innerHTML = `High Score: ${hiScore}`
-}
+} // prints the highscore on the page
 
 document.addEventListener("keydown", (e) => {
   if (keys.space === " " && !gameOn) {
     initiateGame()
   }
-})
+}) // adds an event listener to the keys to initiate the game if its not on
+
 const createBoard = () => {
   makeGrid()
   placeSquare()
   printHighScore()
-  userSquare.src = characterGifs[selectedCharacter].front
-}
+  userSquare.src = characterGifs[selectedCharacter].right
+} // this function sets the game structure as soon as the page loads
 
 createBoard()
 window.addEventListener("keydown", keyPress)
