@@ -34,6 +34,30 @@
 
 ---
 
+### _Setup and Functionality_
+
+- Grab necessary HTML elements and set up initial game variables (grid dimensions, player/ball positions, score, game state).
+
+- The `makeGrid` function generates the game board and appends square div elements to the grid container.
+
+- The `placeBall` and placeSquare functions handle positioning the ball and user-controlled square on the grid.
+
+- User input is managed through the `keyPress` function, updating the square's position based on arrow key presses.
+
+- The `checkOverlap` function determines if the square and ball overlap, updating the score and repositioning the ball if they do.
+
+- The `startTimer` function initiates a countdown timer that ends the game when it reaches zero.
+
+- The `initiateGame` function starts the timer, places the ball, and sets up the ball to randomly teleport.
+
+- The `endGame` function stops the ball and timer, checks for a new high score, stores the final score, and redirects to the game over page.
+
+- The `createBoard` function calls functions to make the grid, place the square, and print the high score.
+
+- Set up 2 event listeners to start the game on spacebar press and handle user input.
+
+---
+
 ### _Favorite Function_
 
 My favorite function is the `keyPress` function, which handles character movement. The simple implementation and the resulting silly character movements were very satisfying to create.

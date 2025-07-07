@@ -35,8 +35,9 @@ body {
 }
 
 .index > h1 {
-  font-size: 100px;
+  font-size: 70px;
   margin-bottom: 3%;
+  margin-top: -20px;
 }
 /* game board page */
 .GameBoard {
