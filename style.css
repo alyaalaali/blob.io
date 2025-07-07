@@ -76,19 +76,25 @@ img {
 
 /* characters page  */
 
-.characters {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  padding: 20px;
-  width: 50%;
-  max-width: 600px;
-}
-
 .sillyGuy,
 .shark {
-  width: 100px;
-  height: 100px;
-  background-color: lightpink;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  margin: 0px 30px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.sillyGuy > img,
+.shark > img {
+  width: 200px;
+  height: 200px;
+}
+
+a {
+  display: flex;
+  justify-content: center;
 }
