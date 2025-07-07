@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   background-image: url("Images/Background.jpg");
-  background-size: contain;
+  background-size: fill;
   background-position: center;
   font-family: "Tiny5", sans-serif;
   font-size: 20px;
@@ -26,7 +26,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-bottom: 50px;
+  margin: 50px;
+  margin-top: 10px;
   width: 750px;
 }
 
@@ -34,6 +35,10 @@ p {
   margin: 50px;
   font-size: 30px;
   color: rgb(78, 121, 76);
+}
+
+.character > p {
+  font-size: 50px;
 }
 
 .grid {
@@ -106,15 +111,20 @@ a {
   justify-content: center;
   text-decoration: none;
   color: rgb(21, 106, 21);
-  font-size: 30px;
+  font-size: 50px;
   margin-bottom: 30px;
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 100px;
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 35px;
   line-height: 0px;
+  color: rgb(255, 255, 255);
+}
+
+.gameOverMsg {
+  font-size: 90px;
 }

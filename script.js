@@ -1,3 +1,4 @@
+//query selections
 const grid = document.querySelector(".grid")
 let circle = document.createElement("img")
 let userSquare = document.createElement("img")
@@ -5,23 +6,54 @@ let scoreDisplay = document.querySelector(".score")
 let timerDisplay = document.querySelector(".timer")
 let highScoreDisp = document.querySelector(".highScore")
 let gameOverMsg = document.querySelector(".gameOverMsg")
-//
+//Local/session Storage
 let highScore = localStorage.getItem("highScore")
-let selectedCharacter = localStorage.getItem("selectedCharacter")
-//
-position = { x: 0, y: 0 }
-squarePosition = { x: 8, y: 4 }
-ballPosition = { x: 0, y: 0 }
+let selectedCharacter = sessionStorage.getItem("selectedCharacter")
+
+//Variables/Object initialization
 let gridWidth = 9
 let gridHeight = 9
 let score = 0
 let gameOn = false
-let timer = 8
+let timer = 30
 let countTimer
 let teleportBall = null
 let hiScore = parseInt(highScore)
 let won = false
 //
+position = { x: 0, y: 0 }
+squarePosition = { x: 8, y: 4 }
+ballPosition = { x: 0, y: 0 }
+//
+const characterGifs = {
+  guyGifs: {
+    right: "../characters/SillyGuy/LeftGuy.gif",
+    left: "../characters/SillyGuy/RightGuy.gif",
+    front: "../characters/SillyGuy/FrontGuy.gif",
+    back: "../characters/SillyGuy/BackGuy.gif",
+  },
+  sharkGifs: {
+    right: "../characters/Shark/LeftShark.gif",
+    left: "../characters/Shark/RightShark.gif",
+    front: "../characters/Shark/FrontShark.gif",
+    back: "../characters/Shark/BackShark.gif",
+  },
+}
+//
+const keys = {
+  left: "ArrowLeft",
+  up: "ArrowUp",
+  right: "ArrowRight",
+  down: "ArrowDown",
+  space: " ",
+}
+//
+const seashells = {
+  blue: "../Images/blueseashell.png",
+  regular: "../Images/seashell.png",
+}
+
+// Functions
 
 const makeGrid = () => {
   for (let x = 0; x < gridHeight; x++) {
@@ -29,14 +61,8 @@ const makeGrid = () => {
       let square = document.createElement("div")
       square.className = "square"
       grid.appendChild(square)
-      // square.innerHTML = `${x} ${y}`
     }
   }
-}
-
-const seashells = {
-  blue: "../Images/blueseashell.png",
-  regular: "../Images/seashell.png",
 }
 
 const placeBall = () => {
@@ -55,7 +81,7 @@ const placeBall = () => {
   if (index >= 0 && index < squares.length) {
     circle.classList.add("ball")
 
-    let num = Math.floor(Math.random() * 3) + 1
+    let num = Math.floor(Math.random() * 100) + 1
     if (num === 25 || num === 3) {
       circle.src = seashells.blue
     } else {
@@ -81,7 +107,6 @@ const placeSquare = () => {
   const index = position.x * gridWidth + position.y
   if (index >= 0 && index < squares.length) {
     userSquare.classList.add("userSquare")
-    // userSquare.src = characterGifs[selectedCharacter].front
     squares[index].appendChild(userSquare)
   }
 }
@@ -89,29 +114,6 @@ const placeSquare = () => {
 const updateSquare = () => {
   placeSquare()
   checkOverlap()
-}
-
-const characterGifs = {
-  guyGifs: {
-    right: "../characters/SillyGuy/LeftGuy.gif",
-    left: "../characters/SillyGuy/RightGuy.gif",
-    front: "../characters/SillyGuy/FrontGuy.gif",
-    back: "../characters/SillyGuy/BackGuy.gif",
-  },
-  sharkGifs: {
-    right: "../characters/Shark/LeftShark.gif",
-    left: "../characters/Shark/RightShark.gif",
-    front: "../characters/Shark/FrontShark.gif",
-    back: "../characters/Shark/BackShark.gif",
-  },
-}
-
-const keys = {
-  left: "ArrowLeft",
-  up: "ArrowUp",
-  right: "ArrowRight",
-  down: "ArrowDown",
-  space: " ",
 }
 
 const keyPress = (e) => {
@@ -161,7 +163,6 @@ const checkOverlap = () => {
     if (seashellImg.src.includes("blueseashell.png")) {
       score++
       won = true
-      // alert("we have a winner!")
       endGame()
       return
     }
@@ -201,11 +202,10 @@ const initiateGame = () => {
 const endGame = () => {
   stopBall()
   clearInterval(countTimer)
-  // alert("game Over! final score is: " + score)
   gameOn = false
   window.removeEventListener("keydown", keyPress)
   checkHighScore()
-  localStorage.setItem("finalScore", score)
+  sessionStorage.setItem("finalScore", score)
   localStorage.setItem("highScore", hiScore)
   sessionStorage.setItem("wonGame", won)
 
@@ -218,7 +218,7 @@ const checkHighScore = () => {
   if (score > hiScore) {
     hiScore = score
     printHighScore()
-    localStorage.setItem("highScore", hiScore)
+    sessionStorage.setItem("highScore", hiScore)
   }
 }
 

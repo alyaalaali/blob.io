@@ -3,7 +3,7 @@ let highScoreDisp = document.querySelector(".highScore")
 let gameOverDisp = document.querySelector(".gameOverMsg")
 
 const checkScore = () => {
-  let finalScore = localStorage.getItem("finalScore")
+  let finalScore = sessionStorage.getItem("finalScore")
   let highScore = localStorage.getItem("highScore")
   const wonGame = sessionStorage.getItem("wonGame")
 
