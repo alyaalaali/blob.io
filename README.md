@@ -6,8 +6,8 @@
 
 ---
 
-[Linkedin](http://linkedin.com) |
-[Github](http://Github.com)
+[Linkedin](http://linkedin.com/in/alyaalaali3) |
+[Github](http://Github.com/alyaalaali)
 
 ### _Description_
 
@@ -17,7 +17,7 @@
 
 #### Winning requires finding the rare blue seashell, it has only a 2% chance of appearing on the board. Good luck!
 
-#### You can play the game on:
+#### You can play the game on [Blob.io](blobio.surge.sh)
 
 ---
 
@@ -103,3 +103,13 @@ const keyPress = (e) => {
 
 - Adding sound effects and background music.
 - adding different levels or game modes.
+
+---
+
+### _Attributions_
+
+#### Sites that helped me complete the game
+
+[W3school](https://www.w3schools.com/jsref/met_win_setinterval.asp)
+
+[Stackoverflow](https://stackoverflow.com/questions/58162481/move-element-in-a-grid-layout-with-arrow-keys)
