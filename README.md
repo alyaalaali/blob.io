@@ -17,7 +17,9 @@
 
 #### Winning requires finding the rare blue seashell, it has only a 2% chance of appearing on the board. Good luck!
 
-#### You can play the game on [Blob.io](blobio.surge.sh)
+#### You can play the game on:
+
+[Blob.io](blobio.surge.sh)
 
 ---
 

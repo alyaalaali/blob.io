@@ -31,16 +31,16 @@ ballPosition = { x: 0, y: 0 }
 
 const characterGifs = {
   guyGifs: {
-    right: "../characters/SillyGuy/LeftGuy.gif",
-    left: "../characters/SillyGuy/RightGuy.gif",
-    front: "../characters/SillyGuy/FrontGuy.gif",
-    back: "../characters/SillyGuy/BackGuy.gif",
+    right: "../characters/LeftGuy.gif",
+    left: "../characters/RightGuy.gif",
+    front: "../characters/FrontGuy.gif",
+    back: "../characters/BackGuy.gif",
   },
   sharkGifs: {
-    right: "../characters/Shark/LeftShark.gif",
-    left: "../characters/Shark/RightShark.gif",
-    front: "../characters/Shark/FrontShark.gif",
-    back: "../characters/Shark/BackShark.gif",
+    right: "../characters/LeftShark.gif",
+    left: "../characters/RightShark.gif",
+    front: "../characters/FrontShark.gif",
+    back: "../characters/BackShark.gif",
   },
 }
 
