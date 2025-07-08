@@ -19,7 +19,7 @@
 
 #### You can play the game on:
 
-[Blob.io](blobio.surge.sh)
+[Blob.io](http://blobio.surge.sh)
 
 ---
 
